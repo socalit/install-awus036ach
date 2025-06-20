@@ -34,7 +34,6 @@ sudo modprobe 88XXau
 echo "Installation complete!"
 echo "------------------------------------------"
 
-# Check if the adapter interface is up
 echo "Checking interface..."
 ip a | grep -E 'wlan[0-9]'
 
