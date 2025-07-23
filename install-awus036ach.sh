@@ -1,43 +1,63 @@
 #!/bin/bash
 
-# install-awus036ach.sh – Installer for ALFA AWUS036ACH (RTL8812AU) on Kali Linux
+# install-awus036ach.sh – Dynamic installer for ALFA AWUS036ACH (RTL8812AU)
+# Author: SoCal IT – github.com/socalit
+# Version: v1.1-dynamic
 
 set -e
 
-echo "ALFA AWUS036ACH Installer for Kali Linux"
-echo "------------------------------------------"
+echo -e "\nALFA AWUS036ACH Dynamic Installer"
+echo "────────────────────────────────────────────"
 
-echo "Step 1: Removing old drivers..."
+KERNEL_VERSION="$(uname -r)"
+echo "[*] Detected kernel: $KERNEL_VERSION"
+
+# STEP 1: Remove old conflicting drivers
+echo "[*] Step 1: Removing old driver remnants..."
 sudo dkms remove 8812au/5.6.4.2_35491.20191025 --all 2>/dev/null || true
 sudo dkms remove realtek-rtl88xxau/5.6.4.2~20230501 --all 2>/dev/null || true
-sudo rm -rf /usr/src/8812au-*
-sudo rm -rf /usr/src/rtl8812au-*
-sudo rm -rf /usr/src/realtek-rtl88xxau-*
+sudo rm -rf /usr/src/8812au-* /usr/src/rtl8812au-* /usr/src/realtek-rtl88xxau-*
 
-echo "Step 2: Installing dependencies..."
+# STEP 2: Install dependencies
+echo "[*] Step 2: Installing required packages..."
 sudo apt update
-sudo apt install -y dkms git build-essential libelf-dev linux-headers-$(uname -r)
+sudo apt install -y dkms git build-essential libelf-dev
 
-echo "Step 3: Cloning Aircrack-ng RTL8812AU driver..."
+# STEP 3: Check for kernel headers
+echo "[*] Step 3: Checking for headers for $KERNEL_VERSION..."
+if ! apt-cache show linux-headers-"$KERNEL_VERSION" &>/dev/null; then
+    echo "[!] No headers found for kernel $KERNEL_VERSION"
+    echo "    └─ Try booting into an older kernel or wait for official headers."
+    exit 1
+fi
+
+sudo apt install -y linux-headers-"$KERNEL_VERSION"
+
+# STEP 4: Clone driver
+echo "[*] Step 4: Cloning rtl8812au driver from Aircrack-ng..."
 cd ~
 rm -rf rtl8812au
 git clone https://github.com/aircrack-ng/rtl8812au.git
 cd rtl8812au
 
-echo "Step 4: Adding and installing module via DKMS..."
+# STEP 5: DKMS build and install
+echo "[*] Step 5: Installing driver via DKMS..."
 sudo dkms add .
-sudo dkms install realtek-rtl88xxau/5.6.4.2~20230501
+sudo dkms install 8812au || true
+sudo dkms autoinstall
 
-echo "Step 5: Loading driver module (88XXau)..."
-sudo modprobe 88XXau
+# STEP 6: Load module
+echo "[*] Step 6: Loading 8812au kernel module..."
+sudo modprobe 8812au
 
-echo "Installation complete!"
-echo "------------------------------------------"
+# STEP 7: Show interface
+echo "[*] Step 7: Checking for wireless interfaces..."
+ip link | grep wlan || echo "[!] No wireless interface found. Replug or reboot."
 
-echo "Checking interface..."
-ip a | grep -E 'wlan[0-9]'
-
+# DONE
 echo
+echo "[✓] AWUS036ACH driver installation complete!"
+echo "────────────────────────────────────────────"
 echo "To enable monitor mode:"
 echo "    sudo ip link set wlan1 down"
 echo "    sudo iw dev wlan1 set type monitor"
