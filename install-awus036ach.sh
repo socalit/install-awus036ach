@@ -2,7 +2,7 @@
 
 # install-awus036ach.sh – Dynamic installer for ALFA AWUS036ACH (RTL8812AU)
 # Author: SoCal IT – github.com/socalit
-# Version: v1.1-dynamic
+# Version: v1.2-dynamic
 
 set -e
 
@@ -47,8 +47,8 @@ sudo dkms install 8812au || true
 sudo dkms autoinstall
 
 # STEP 6: Load module
-echo "[*] Step 6: Loading 8812au kernel module..."
-sudo modprobe 8812au
+echo "[*] Step 6: Loading 88XXau kernel module..."
+sudo modprobe 88XXau
 
 # STEP 7: Show interface
 echo "[*] Step 7: Checking for wireless interfaces..."
