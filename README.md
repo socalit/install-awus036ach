@@ -1,4 +1,4 @@
-# ALFA AWUS036ACH Driver Installer for Kali Linux
+# ALFA AWUS036ACH Driver Installer for Kali Linux (v1.1-dynamic)
 
 This script installs the correct **Realtek RTL8812AU** driver for the **ALFA AWUS036ACH** USB Wi-Fi adapter using DKMS on Kali Linux (and Debian-based distros). It supports **monitor mode**, **packet injection**, and **survives kernel upgrades** via `dkms autoinstall`.
 
@@ -6,7 +6,7 @@ This script installs the correct **Realtek RTL8812AU** driver for the **ALFA AWU
 
 ---
 
-## ✅ Features
+## Features
 
 - Automatically detects and installs matching kernel headers  
 - Removes conflicting Realtek driver versions (8812au, 88XXau)  
