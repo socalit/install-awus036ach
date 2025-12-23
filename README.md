@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Lenovo WiFi Whitelist Remover" width="100%">
+  <img src="assets/banner.png" alt="install-awus036ach" width="100%">
 </p>
 
 # ALFA AWUS036ACH Driver Installer for Kali Linux (v1.2-dynamic)
