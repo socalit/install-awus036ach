@@ -44,6 +44,8 @@ cd install-awus036ach
 chmod +x install-awus036ach.sh
 sudo ./install-awus036ach.sh
 ```
+## Support
+
 ### ⭐ **Star the GitHub repo**  
 ### Share it with communities  
 ### Open issues or request features  
