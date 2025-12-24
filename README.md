@@ -1,8 +1,12 @@
-<p align="center">
-  <img src="assets/banner.png" alt="install-awus036ach" width="100%">
-</p>
+![install-awus036ach](assets/banner.png)
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-%23FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/socal370xs)
+[![Linux](https://img.shields.io/badge/Linux-Kali%20%7C%20Debian-yellow?logo=linux)](https://www.kali.org/)
+[![Adapter](https://img.shields.io/badge/Adapter-AWUS036ACH-red)](https://www.alfa.com.tw/)
+[![Driver](https://img.shields.io/badge/Driver-RTL8812AU-blue)](#)
+[![WiFi](https://img.shields.io/badge/WiFi-Monitor%20%7C%20Injection-success)](#)
+[![License](https://img.shields.io/badge/license-MIT-purple)](/LICENSE)
+
 
 # ALFA AWUS036ACH Driver Installer for Kali Linux (v1.2-dynamic)
 
