@@ -37,8 +37,6 @@ This script installs the correct **Realtek RTL8812AU** driver for the **ALFA AWU
 ---
 
 ## Installation
-Quick Install (Arch / CachyOS / Arch Black)
-
 ```bash
 git clone https://github.com/socalit/install-awus036ach.git
 cd install-awus036ach
